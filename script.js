@@ -41,4 +41,27 @@ window.onload = function(){
     
 	};
 
+	function httpGet(url){
+				
+		// IMDb ID to Search
+		var imdbId = "tt1285016";
+
+		// Send Request
+		var http = new XMLHttpRequest();
+		http.open("GET", "http://www.omdbapi.com/?t=" + query, false);
+		http.send(null);
+
+		// Response to JSON
+		var omdbData = http.responseText;
+		var omdbJSON = eval("(" + omdbData + ")");
+
+		// Returns Movie Title
+		// alert(omdbJSON.Title);
+		displayResults(omdbJSON);
+
+	  console.log(http)
+	  // // return xmlHttp.responseText;
+	  // console.log(xmlHttp.status, xmlHttp.statusText);
+	};
+
 };
