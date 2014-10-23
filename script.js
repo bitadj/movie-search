@@ -64,4 +64,8 @@ window.onload = function(){
 	  // console.log(xmlHttp.status, xmlHttp.statusText);
 	};
 
+	function displayResults(json){
+  	document.getElementById("title").innerHTML = json.Title;
+	};
+
 };
