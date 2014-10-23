@@ -31,5 +31,14 @@ $(document).ready(function (){
 
 });
 
+window.onload = function(){
 
-});
+	function myFunction(e) {
+    inupt = document.getElementById("search").value;
+    // document.getElementById("result").innerHTML = inupt;
+    e.preventDefault();
+    console.log(inupt);
+    
+	};
+
+};
