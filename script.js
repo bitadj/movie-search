@@ -14,5 +14,22 @@ $(document).ready(function (){
     };
   });
 
+  $(document).bind('click', function(){
+    closeSearch();
+  });
+
+  $('#searchtext').keypress( function(e){
+    if (e.which == 13){
+      closeSearch();
+    };
+  });
+
+  function closeSearch(){
+    $('#overlay').fadeOut('slow');
+    $('#content').css('opacity', 1);
+  };
+
+});
+
 
 });
