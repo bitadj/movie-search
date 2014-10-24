@@ -1,9 +1,9 @@
 var input;
 
 //use jQuery for type to search function
-
 $(document).ready(function (){
 
+  $('#overlay').hide();
 	//press enter to search
   $(document).bind('keydown', function(e){
     if (e.which == 13){
@@ -37,34 +37,30 @@ window.onload = function(){
     if (e.which == 13){
       e.preventDefault();
       input = document.getElementById('searchtext').value;
-      // input = "the avengers"
 
-      //clear out search results:
+		if (input) {
+        httpGet(input);
+      } else {
+        document.getElementById("title").innerHTML = "You didn't search for anything. Please try again.";
+        clearDOM();
+      };
+
       input = null;
       document.getElementById('searchtext').value = ""
       return false;
-    };
+    };  
   };
 
 	function httpGet(url){
 
-		// Send Request
-		var http = new XMLHttpRequest();
-		http.open("GET", "http://www.omdbapi.com/?t=" + input, false);
-		http.send(null);
+    var http = new XMLHttpRequest();
+    http.open("GET", "http://www.omdbapi.com/?t=" + input, false);
+    http.send(null);
 
-		// Response to JSON
-		var omdbData = http.responseText;
-		var omdbJSON = eval("(" + omdbData + ")");
-
-		// Returns Movie Title
-		// alert(omdbJSON.Title);
-		displayResults(omdbJSON);
-
-	  console.log(http)
-	  // // return xmlHttp.responseText;
-	  // console.log(xmlHttp.status, xmlHttp.statusText);
-	};
+    var omdbData = http.responseText;
+    var omdbJSON = eval("(" + omdbData + ")");
+      displayResults(omdbJSON);
+  };
 
 	function displayResults(json){
 	  document.getElementById("poster").src = json.Poster;
@@ -72,5 +68,12 @@ window.onload = function(){
     document.getElementById("plot").innerHTML = json.Plot;
     document.getElementById("year").innerHTML = json.Released;
 	};
+
+	function clearDOM(){
+    document.getElementById("poster").src = ""
+    document.getElementById("genre").innerHTML = "";
+    document.getElementById("plot").innerHTML = "";
+    document.getElementById("year").innerHTML = "";
+  };
 
 };
