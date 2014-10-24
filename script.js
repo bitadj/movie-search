@@ -9,6 +9,7 @@ $(document).ready(function (){
     if (e.which == 13){
       $('#overlay').fadeIn('fast', function(){
           $('#content').css('opacity', 0.2);
+          $('#searchtext').css('opacity',1);
           $('#searchtext').focus();
       });
     };
@@ -86,6 +87,8 @@ window.onload = function(){
     document.getElementById("genre").innerHTML = "";
     document.getElementById("plot").innerHTML = "";
     document.getElementById("year").innerHTML = "";
+    document.getElementById("actors").innerHTML = "";
+
   };
 
   function extractReleaseYear(release) {
