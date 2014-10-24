@@ -33,22 +33,24 @@ $(document).ready(function (){
 
 window.onload = function(){
 
-	function myFunction(e) {
-    inupt = document.getElementById("search").value;
-    // document.getElementById("result").innerHTML = inupt;
-    e.preventDefault();
-    console.log(inupt);
-    
-	};
+  document.getElementById('searchtext').onkeypress = function(e) {
+    if (e.which == 13){
+      e.preventDefault();
+      input = document.getElementById('searchtext').value;
+      // input = "the avengers"
+
+      //clear out search results:
+      input = null;
+      document.getElementById('searchtext').value = ""
+      return false;
+    };
+  };
 
 	function httpGet(url){
-				
-		// IMDb ID to Search
-		var imdbId = "tt1285016";
 
 		// Send Request
 		var http = new XMLHttpRequest();
-		http.open("GET", "http://www.omdbapi.com/?t=" + query, false);
+		http.open("GET", "http://www.omdbapi.com/?t=" + input, false);
 		http.send(null);
 
 		// Response to JSON
@@ -65,7 +67,10 @@ window.onload = function(){
 	};
 
 	function displayResults(json){
-  	document.getElementById("title").innerHTML = json.Title;
+	  document.getElementById("poster").src = json.Poster;
+    document.getElementById("genre").innerHTML = json.Genre;
+    document.getElementById("plot").innerHTML = json.Plot;
+    document.getElementById("year").innerHTML = json.Released;
 	};
 
 };
