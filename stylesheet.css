@@ -1,15 +1,36 @@
+div {
+    border-radius: 5px;
+}
+
 body {
   background-color: rgba(46,48,58,0.96);
   color: white;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 15px;
 }
 
-#overlay {
-  background-color: rgba(255, 0, 0, 0.2);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 10px;
+}
+
+#search-note {
+  text-align: center;
+}
+
+#results {
+  float: left;
+}
+
+#poster {
+  padding: 10px;
+  padding-top: 15px;
+  float: left;
+}
+
+#plot {
+  width: 350px;
+  font-size: 16px;
 }
 
 #searchtext {
@@ -22,5 +43,21 @@ body {
   padding: 30px;
   font-family: Helvetica;
   font-size: 100px;
+
+}
+
+#content {
+  margin: 0 auto;
+  font-family: 'Droid Sans', sans-serif;  //come back to this line
+  font-size: 18px;
+}
+
+#overlay {
+  background-color: rgba(255, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
 }
