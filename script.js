@@ -63,10 +63,22 @@ window.onload = function(){
   };
 
 	function displayResults(json){
-	  document.getElementById("poster").src = json.Poster;
-    document.getElementById("genre").innerHTML = json.Genre;
-    document.getElementById("plot").innerHTML = json.Plot;
-    document.getElementById("year").innerHTML = json.Released;
+		if (json.Response == "False") {
+      document.getElementById("title").innerHTML = json.Error;
+		} else if (json.Response == "True"){
+		  document.getElementById("title").innerHTML = json.Title;
+      if (json.Poster == "N/A"){
+        //do nothing
+      } else {
+        document.getElementById("poster").src = json.Poster;
+      };
+	    document.getElementById("genre").innerHTML = json.Genre;
+	    document.getElementById("plot").innerHTML = json.Plot;
+      document.getElementById("year").innerHTML = extractReleaseYear(json.Released);
+      document.getElementById("actors").innerHTML = getActors(json.Actors);
+    } else {
+      document.getElementById("title").innerHTML = "Try again later.";
+    };
 	};
 
 	function clearDOM(){
@@ -74,6 +86,28 @@ window.onload = function(){
     document.getElementById("genre").innerHTML = "";
     document.getElementById("plot").innerHTML = "";
     document.getElementById("year").innerHTML = "";
+  };
+
+  function extractReleaseYear(release) {
+    var d = Date.parse(release);
+    var minutes = 1000 * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var y = Math.round(d / years) + 1970;
+    return y;
+  };
+
+  function getActors(actors_list) {
+    var actors = "";
+    var actors_array = actors_list.split(", ")
+    console.log(actors_array)
+    console.log(actors)
+
+    for (i = 0; i < actors_array.length; i++) { 
+      actors += actors_array[i] + "<br>";
+    };
+    return actors;
   };
 
 };
